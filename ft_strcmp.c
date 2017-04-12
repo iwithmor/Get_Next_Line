@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iwithmor <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/09 23:12:53 by iwithmor          #+#    #+#             */
-/*   Updated: 2016/11/09 23:12:54 by iwithmor         ###   ########.fr       */
+/*   Created: 2016/09/26 20:36:41 by iwithmor          #+#    #+#             */
+/*   Updated: 2016/09/26 20:36:43 by iwithmor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-# define BUFF_SIZE 32
-# include <fcntl.h>
-
-typedef struct	s_gnl
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	char		*rest;
-	int			fd;
-}				t_gnl;
+	unsigned char *s1cpy;
+	unsigned char *s2cpy;
 
-int				get_next_line(const int fd, char **line);
-
-#endif
+	s1cpy = (unsigned char *)s1;
+	s2cpy = (unsigned char *)s2;
+	while (*s1cpy && *s2cpy)
+	{
+		if (*s1cpy != *s2cpy)
+			return (int)(*s1cpy - *s2cpy);
+		s1cpy++;
+		s2cpy++;
+	}
+	if (*s1cpy || *s2cpy)
+		return (int)(*s1cpy - *s2cpy);
+	return (0);
+}

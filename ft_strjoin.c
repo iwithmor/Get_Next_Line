@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iwithmor <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/09 23:12:53 by iwithmor          #+#    #+#             */
-/*   Updated: 2016/11/09 23:12:54 by iwithmor         ###   ########.fr       */
+/*   Created: 2016/09/30 21:27:17 by iwithmor          #+#    #+#             */
+/*   Updated: 2016/09/30 21:27:19 by iwithmor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-# define BUFF_SIZE 32
-# include <fcntl.h>
+#include "libft.h"
 
-typedef struct	s_gnl
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char		*rest;
-	int			fd;
-}				t_gnl;
+	char *new;
 
-int				get_next_line(const int fd, char **line);
-
-#endif
+	if (!s1 || !s2)
+		return (NULL);
+	new = ft_strnew(ft_strlen(s1) + ft_strlen(s2));
+	if (!new)
+		return (NULL);
+	ft_strcpy(new, s1);
+	ft_strcpy(new + ft_strlen(s1), s2);
+	return (new);
+}

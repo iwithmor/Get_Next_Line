@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_exponent.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iwithmor <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/09 23:12:53 by iwithmor          #+#    #+#             */
-/*   Updated: 2016/11/09 23:12:54 by iwithmor         ###   ########.fr       */
+/*   Created: 2016/10/17 23:16:57 by iwithmor          #+#    #+#             */
+/*   Updated: 2016/10/17 23:16:59 by iwithmor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-# define BUFF_SIZE 32
-# include <fcntl.h>
-
-typedef struct	s_gnl
+int	ft_exponent(int nb, int power)
 {
-	char		*rest;
-	int			fd;
-}				t_gnl;
+	int result;
 
-int				get_next_line(const int fd, char **line);
-
-#endif
+	result = nb;
+	if (power < 0)
+		return (0);
+	if (power == 0)
+		return (1);
+	while (power > 1)
+	{
+		result *= nb;
+		power--;
+	}
+	return (result);
+}

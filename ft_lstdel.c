@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_lstdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iwithmor <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/09 23:12:53 by iwithmor          #+#    #+#             */
-/*   Updated: 2016/11/09 23:12:54 by iwithmor         ###   ########.fr       */
+/*   Created: 2016/10/03 14:56:08 by iwithmor          #+#    #+#             */
+/*   Updated: 2016/10/03 14:56:09 by iwithmor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-# define BUFF_SIZE 32
-# include <fcntl.h>
+#include "libft.h"
 
-typedef struct	s_gnl
+void	ft_lstdel(t_list **alst, void (*del)(void *, size_t))
 {
-	char		*rest;
-	int			fd;
-}				t_gnl;
+	t_list *link;
+	t_list *nxt;
 
-int				get_next_line(const int fd, char **line);
-
-#endif
+	if (!alst || !*alst || !del)
+		return ;
+	link = *alst;
+	while (link)
+	{
+		nxt = link->next;
+		del(link->content, link->content_size);
+		free(link);
+		link = nxt;
+	}
+	*alst = NULL;
+}
